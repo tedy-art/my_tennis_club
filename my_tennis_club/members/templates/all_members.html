@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Title {% endblock %}</title>
+</head>
+<body>
+<ul>
+    {% for x in mymembers %}
+        <li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>
