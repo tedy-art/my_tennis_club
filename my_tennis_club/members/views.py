@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Member
 
@@ -30,20 +30,23 @@ def details(request, id):
         - Sends the object to the template.
         - Outputs the HTML that is rendered by the template.
     """
-    mymember = Member.objects.get(id = id)
+    mymember = Member.objects.get(id=id)
     template = loader.get_template("details.html")
     context = {
         'mymember': mymember
     }
     return HttpResponse(template.render(context, request))
 
+
 def main(request):
     template = loader.get_template("main.html")
     return HttpResponse(template.render())
 
+
 def testing(request):
+    mydata = Member.objects.filter(firstname="Emil").values()
     template = loader.get_template('template.html')
     context = {
-        'fruits':["apple", "banana", "cherry"],
+        "mymembers": mydata,
     }
     return HttpResponse(template.render(context, request))
